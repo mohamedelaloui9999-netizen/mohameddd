@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed El Aloui | Cybersecurity Specialist & Web Developer</title>
+    <meta name="description" content="Portfolio of Mohamed El Aloui, Web Developer and aspiring Cybersecurity Specialist.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           Variables & Theme Tokens
+           ========================================================================== */
+        :root {
+            --bg-main: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.4);
+            --secondary-color: #6a00ff;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --container-width: 1200px;
+            --section-pad: 100px 0;
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .light-mode {
+            --bg-main: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(0, 0, 0, 0.03);
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --accent-color: #0066ff;
+            --accent-glow: rgba(0, 102, 255, 0.3);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+        body { font-family: var(--font-body); background-color: var(--bg-main); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; transition: background-color var(--transition-normal), color var(--transition-normal); cursor: none; }
+        a { text-decoration: none; color: inherit; transition: color var(--transition-fast); }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; }
+        .container-sm { max-width: 800px; }
+        .section { padding: var(--section-pad); }
+        .bg-secondary { background-color: var(--bg-secondary); }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; align-items: center; }
+        .align-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        .highlight { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-glow); }
+
+        .cursor { width: 30px; height: 30px; border: 2px solid var(--accent-color); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: width 0.2s, height 0.2s, background-color 0.2s; mix-blend-mode: difference; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--accent-color); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; }
+        .cursor-hover { width: 50px; height: 50px; background-color: var(--accent-glow); border: 2px solid transparent; }
+
+        .btn { display: inline-block; padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all var(--transition-normal); border: 2px solid transparent; }
+        .btn-primary { background-color: var(--accent-color); color: #000; box-shadow: 0 0 15px var(--accent-glow); }
+        .btn-primary:hover { background-color: transparent; border-color: var(--accent-color); color: var(--accent-color); box-shadow: 0 0 25px var(--accent-glow) inset; }
+        .btn-secondary { background-color: transparent; border-color: var(--border-color); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .block-btn { display: block; width: 100%; text-align: center; border-radius: 8px; padding: 1rem; }
+
+        .glassmorphism { background: var(--bg-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal); }
+        .hover-lift:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); border-color: var(--accent-glow); }
+        .section-title { margin-bottom: 4rem; }
+        .section-title h2 { font-size: 2.5rem; display: inline-block; }
+        .line { height: 4px; width: 60px; background-color: var(--accent-color); border-radius: 2px; margin-top: 0.5rem; box-shadow: 0 0 10px var(--accent-glow); }
+
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 0; z-index: 1000; transition: all var(--transition-normal); }
+        .header.scrolled { padding: 1rem 0; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+        .light-mode .header.scrolled { background: rgba(248, 249, 250, 0.85); }
+        .container-header { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-family: var(--font-heading); font-weight: 700; color: var(--text-primary); }
+        .logo span { color: var(--accent-color); }
+        .nav { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-link { font-size: 0.95rem; font-weight: 500; position: relative; padding-bottom: 5px; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width var(--transition-normal); box-shadow: 0 0 8px var(--accent-glow); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .theme-btn { background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; transition: color var(--transition-fast); }
+        .theme-btn:hover { color: var(--accent-color); }
+        .light-icon { display: none; }
+        .light-mode .light-icon { display: inline-block; }
+        .light-mode .dark-icon { display: none; }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; }
+        .greeting { font-weight: 600; color: var(--accent-color); letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 1rem; }
+        .hero-title { font-size: 4rem; margin-bottom: 0.5rem; }
+        .hero-subtitle { font-size: 2rem; color: var(--text-secondary); margin-bottom: 1.5rem; font-weight: 500; }
+        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 550px; }
+        .hero-btns { display: flex; gap: 1.5rem; }
+        .image-wrapper { aspect-ratio: 1; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid var(--accent-glow); box-shadow: 0 0 40px rgba(0, 240, 255, 0.1); animation: float 6s ease-in-out infinite; }
+        .huge-icon { font-size: 8rem; color: var(--accent-color); filter: drop-shadow(0 0 15px var(--accent-glow)); }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+        .about p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem; }
+        .about p:last-child { margin-bottom: 0; }
+        .about-details ul { display: flex; flex-direction: column; gap: 1.2rem; }
+        .about-details li { font-size: 1.05rem; display: flex; align-items: flex-start; gap: 10px; }
+        .about-details i { color: var(--accent-color); margin-top: 4px; font-size: 1.1rem; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .skill-card { text-align: center; padding: 2rem; }
+        .skill-icon { font-size: 3.5rem; margin-bottom: 1rem; transition: transform var(--transition-fast); }
+        .skill-card:hover .skill-icon { transform: scale(1.1); }
+        .skill-card h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .skill-card p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .project-card { display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; padding: 0; }
+        .project-icon-top { height: 150px; background: linear-gradient(135deg, rgba(0,240,255,0.1) 0%, rgba(106,0,255,0.1) 100%); border-bottom: 1px solid var(--border-color); display: flex; justify-content: center; align-items: center; font-size: 3.5rem; color: var(--accent-color); }
+        .project-info { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-info h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .project-info p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; flex-grow: 1; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tags span { font-size: 0.8rem; padding: 0.3rem 0.8rem; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-secondary); }
+        .project-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); font-weight: 500; margin-top: auto; }
+        .project-link i { transition: transform var(--transition-fast); }
+        .project-link:hover i { transform: translateX(5px); }
+
+        .roadmap-timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .roadmap-timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 2px; background: var(--border-color); z-index: 0; }
+        .timeline-item { position: relative; margin-bottom: 3rem; padding: 2rem; margin-left: 60px; z-index: 1; }
+        .timeline-item::before { content: ''; position: absolute; left: -48px; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg-secondary); border: 2px solid var(--border-color); z-index: 2; transition: all var(--transition-fast); }
+        .border-highlight { border-color: var(--accent-color); box-shadow: 0 0 20px rgba(0, 240, 255, 0.05); }
+        .timeline-item.border-highlight::before { background: var(--accent-color); border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); }
+        .timeline-date { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600; }
+        .timeline-date.highlight { color: var(--accent-color); }
+        .timeline-item h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .timeline-item ul { display: flex; flex-direction: column; gap: 1rem; }
+        .timeline-item li { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
+        .timeline-item li i { color: var(--text-primary); width: 20px; text-align: center; margin-right: 8px; }
+
+        .contact-desc { text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; }
+        .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .contact-btn { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; font-weight: 500; transition: all var(--transition-fast); }
+        .contact-btn:hover { border-color: var(--accent-color); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+        .contact-btn i { font-size: 1.2rem; color: var(--accent-color); }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .input-field { width: 100%; padding: 1rem 1.5rem; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem; transition: border-color var(--transition-fast); }
+        .input-field:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.1); }
+        textarea.input-field { resize: vertical; min-height: 120px; }
+
+        .footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color); background: var(--bg-secondary); }
+        .footer p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .fade-in-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+
+        @media (hover: none) and (pointer: coarse) { .cursor, .cursor-dot { display: none; } body { cursor: auto; } }
+        @media screen and (max-width: 992px) { .hero-title { font-size: 3rem; } .hero-subtitle { font-size: 1.5rem; } .grid-2 { gap: 2rem; } }
+        @media screen and (max-width: 768px) {
+            .section { padding: 60px 0; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .mobile-toggle { display: block; }
+            .nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: var(--bg-secondary); border-left: 1px solid var(--border-color); flex-direction: column; justify-content: center; transition: right var(--transition-slow); box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5); }
+            .nav.active { right: 0; }
+            .nav-links { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero { padding-top: 120px; text-align: center; }
+            .hero-desc { margin: 0 auto 2rem auto; }
+            .hero-btns { justify-content: center; }
+            .image-wrapper { max-width: 300px; margin: 0 auto; }
+            .timeline-item { margin-left: 40px; padding: 1.5rem; }
+            .roadmap-timeline::before { left: 10px; }
+            .timeline-item::before { left: -38px; }
+        }
+        @media screen and (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .section-title h2 { font-size: 2rem; }
+            .glassmorphism { padding: 1.5rem; }
+            .btn { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+            .contact-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <header class="header">
+        <div class="container container-header">
+            <a href="#" class="logo">Mohamed<span>.</span></a>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Me</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#roadmap" class="nav-link">Cybersecurity</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="theme-btn" class="theme-btn" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-sun light-icon"></i>
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                </button>
+            </nav>
+            <button class="mobile-toggle" aria-label="Open Mobile Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero section">
+            <div class="container hero-content grid-2">
+                <div class="hero-text fade-in-scroll">
+                    <span class="greeting">Hello, I'm</span>
+                    <h1 class="hero-title">Mohamed El Aloui</h1>
+                    <h2 class="hero-subtitle">Web Developer & Future <br><span class="highlight">Cybersecurity Specialist</span></h2>
+                    <p class="hero-desc">
+                        Driven by curiosity, problem-solving, and digital protection. Building robust web technologies while mastering modern cybersecurity techniques to protect the systems of tomorrow.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image fade-in-scroll delay-1">
+                    <div class="image-wrapper glassmorphism">
+                        <i class="fa-solid fa-user-shield huge-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about section bg-secondary">
+            <div class="container">
+                <div class="section-title fade-in-scroll">
+                    <h2>About Me</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="about-grid grid-2 fade-in-scroll">
+                    <div class="about-info glassmorphism">
+                        <p>I am a highly motivated 17-year-old Web Developer based in Salé, Morocco, with an intense passion for Cybersecurity. At an early age, I began laying robust technical foundations precisely intersecting software development and web security.</p>
+                        <p>I am currently deeply embedded in engineering clean code ecosystems alongside mastering core Ethical Hacking paradigms. My philosophy is simple: one must understand how digital assets are built to comprehensively defend them.</p>
+                    </div>
+                    <div class="about-details glassmorphism">
+                        <ul>
+                            <li><strong><i class="fa-solid fa-location-dot"></i> Location:</strong> Salé, Morocco</li>
+                            <li><strong><i class="fa-solid fa-briefcase"></i> Work Preference:</strong> Hybrid / Remote</li>
+                            <li><strong><i class="fa-solid fa-cake-candles"></i> Age:</strong> 17</li>
+                            <li><strong><i class="fa-solid fa-crosshairs"></i> Objective:</strong> Ascend as a top-tier Ethical Hacker proactively defending critical infrastructure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills section">
+            <div class="container">
+                <div class="section-title fade-in-scroll">
+                    <h2>Technical Expertise</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="skills-grid fade-in-scroll">
+                    <div class="skill-card glassmorphism hover-lift">
+                        <i class="fa-brands fa-html5 skill-icon" style="color:#e34c26"></i>
+                        <h3>HTML</h3><p>Intermediate</p>
+                    </div>
+                    <div class="skill-card glassmorphism hover-lift">
+                        <i class="fa-brands fa-css3-alt skill-icon" style="color:#264de4"></i>
+                        <h3>CSS</h3><p>Intermediate</p>
+                    </div>
+                    <div class="skill-card glassmorphism hover-lift">
+                        <i class="fa-brands fa-js skill-icon" style="color:#f0db4f"></i>
+                        <h3>JavaScript</h3><p>Beginner</p>
+                    </div>
+                    <div class="skill-card glassmorphism hover-lift">
+                        <i class="fa-brands fa-python skill-icon" style="color:#306998"></i>
+                        <h3>Python</h3><p>Beginner</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects section bg-secondary">
+            <div class="container">
+                <div class="section-title fade-in-scroll">
+                    <h2>Selected Projects</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="project-grid grid-2">
+                    <div class="project-card glassmorphism hover-lift fade-in-scroll">
+                        <div class="project-icon-top"><i class="fa-solid fa-lock"></i></div>
+                        <div class="project-info">
+                            <h3>Secure Login UI</h3>
+                            <p>A modern login interface built with HTML, CSS, and JavaScript focusing on clean design, responsive layout, and robust client-side validation logic.</p>
+                            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                            <a href="#" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card glassmorphism hover-lift fade-in-scroll delay-1">
+                        <div class="project-icon-top"><i class="fa-solid fa-globe"></i></div>
+                        <div class="project-info">
+                            <h3>Personal Portfolio Website</h3>
+                            <p>A dynamic, premium single-page application specifically engineered to professionally showcase my web development capabilities, technical goals, and cybersecurity roadmap.</p>
+                            <div class="tags"><span>HTML</span><span>Vanilla CSS</span><span>Vanilla JS</span></div>
+                            <a href="#" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="roadmap section">
+            <div class="container">
+                <div class="section-title fade-in-scroll align-center">
+                    <h2>Cybersecurity Roadmap</h2>
+                    <div class="line mx-auto"></div>
+                </div>
+                <div class="roadmap-timeline fade-in-scroll">
+                    <div class="timeline-item glassmorphism hover-lift">
+                        <div class="timeline-date">Phase 1: Current Focus</div>
+                        <h3>Establishing the Core</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-terminal"></i> <strong>Linux Fundamentals:</strong> Mastering the standard OS commands and architecture.</li>
+                            <li><i class="fa-solid fa-network-wired"></i> <strong>Networking Basics:</strong> Understanding protocols, packets, and infrastructure.</li>
+                            <li><i class="fa-solid fa-shield-halved"></i> <strong>Web Security Concepts:</strong> Cross-Site Scripting (XSS), SQL Injection, and data sanitization.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item glassmorphism hover-lift border-highlight fade-in-scroll delay-1">
+                        <div class="timeline-date highlight">Phase 2: Future Objectives</div>
+                        <h3>Advanced Specialization</h3>
+                        <ul>
+                            <li><i class="fa-brands fa-linux"></i> <strong>Kali Linux:</strong> Extensive utilization of internal exploit and enumeration toolkits.</li>
+                            <li><i class="fa-solid fa-bug"></i> <strong>OWASP Top 10:</strong> Detailed mastery of finding, exploiting, and mitigating the most critical web risks.</li>
+                            <li><i class="fa-solid fa-user-secret"></i> <strong>Penetration Testing Techniques:</strong> Actively running red-team scenarios and security auditing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact section bg-secondary">
+            <div class="container container-sm">
+                <div class="section-title fade-in-scroll align-center">
+                    <h2>Initiate Contact</h2>
+                    <div class="line mx-auto"></div>
+                </div>
+                <div class="contact-card glassmorphism fade-in-scroll">
+                    <p class="contact-desc">Ready to secure your digital presence or build something extraordinary? My inbox is always open.</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:Mohamedelaloui333@gmail.com" class="contact-btn">
+                            <i class="fa-solid fa-envelope"></i> Mohamedelaloui333@gmail.com
+                        </a>
+                        <a href="https://instagram.com/m.o.h.a.m.e.d.9.9.9.9" target="_blank" class="contact-btn">
+                            <i class="fa-brands fa-instagram"></i> @m.o.h.a.m.e.d.9.9.9.9
+                        </a>
+                    </div>
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Transmission sequence initiated. Demo feature.');">
+                        <input type="text" placeholder="Your Name" required class="input-field">
+                        <input type="email" placeholder="Your Email" required class="input-field">
+                        <textarea placeholder="Your Message" rows="5" required class="input-field"></textarea>
+                        <button type="submit" class="btn btn-primary block-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Mohamed El Aloui. Engineered & Secured.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initThemeToggle(); initMobileMenu(); initCustomCursor(); initScrollAnimations(); initHeaderScroll();
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        });
+
+        function initThemeToggle() {
+            const themeBtn = document.getElementById('theme-btn');
+            const body = document.body;
+            if (!themeBtn) return;
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'light') { body.classList.remove('dark-mode'); body.classList.add('light-mode'); }
+            else { body.classList.add('dark-mode'); body.classList.remove('light-mode'); }
+            
+            themeBtn.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.remove('light-mode'); body.classList.add('dark-mode'); localStorage.setItem('portfolio-theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode'); body.classList.add('light-mode'); localStorage.setItem('portfolio-theme', 'light');
+                }
+            });
+        }
+
+        function initMobileMenu() {
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const themeBtn = document.querySelector('.theme-btn');
+            
+            if (!mobileToggle || !navMenu) return;
+            
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
+                    if(themeBtn) themeBtn.style.display = 'block'; 
+                } else {
+                    icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+
+        function initHeaderScroll() {
+            const header = document.querySelector('.header');
+            if (!header) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            });
+        }
+
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { root: null, rootMargin: '0px', threshold: 0.15 });
+            
+            fadeElements.forEach(el => observer.observe(el));
+            
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navObserver = new IntersectionObserver((entries) => {
+                let currentSectionId = '';
+                entries.forEach(entry => { if (entry.isIntersecting && entry.intersectionRatio > 0.5) currentSectionId = entry.target.getAttribute('id'); });
+                if (currentSectionId) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) link.classList.add('active');
+                    });
+                }
+            }, { threshold: 0.5 });
+            sections.forEach(section => navObserver.observe(section));
+        }
+
+        function initCustomCursor() {
+            if (window.matchMedia("(pointer: coarse)").matches) return;
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+            if (!cursor || !cursorDot) return;
+            
+            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                cursor.style.opacity = '1'; cursorDot.style.opacity = '1';
+                cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
+            });
+            
+            document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorDot.style.opacity = '0'; });
+            
+            function animateCursor() {
+                const ease = 0.2; 
+                cursorX += (mouseX - cursorX) * ease; cursorY += (mouseY - cursorY) * ease;
+                cursor.style.left = `${cursorX}px`; cursor.style.top = `${cursorY}px`;
+                requestAnimationFrame(animateCursor);
+            }
+            requestAnimationFrame(animateCursor);
+            
+            const interactives = document.querySelectorAll('a, button, .hover-lift, input, textarea');
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+            });
+        }
+    </script>
+</body>
+</html>
